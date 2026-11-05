@@ -16,3 +16,6 @@ e2e/.report
 # The generated résumé carries private contact details (from .env). Build it with `npm run resume`.
 public/*_Resume.pdf
 public/*_Resume.docx
+
+# Promo videos and images live next to the code but not in it.
+marketing/
