@@ -1,5 +1,12 @@
 # AtulOS
 
+[![Live site](https://img.shields.io/badge/live-atulos.pages.dev-ff7a3d)](https://atulos.pages.dev)
+[![License: MIT](https://img.shields.io/badge/code-MIT-informational)](LICENSE)
+![React 18](https://img.shields.io/badge/React-18-61dafb)
+![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178c6)
+
+![AtulOS desktop: the ID card, the avatar, widgets and the dock](public/og.png)
+
 Atul Bhadoriya's portfolio, built as an operating system: a boot sequence, a lock screen, a desktop
 with widgets, windowed apps with a genie minimise, a magnifying dock, an eight-game Arcade, a
 light switch, and sixteen hidden secrets that lead to a vault.
