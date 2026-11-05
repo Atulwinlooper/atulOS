@@ -154,8 +154,9 @@ test.describe('new features @desktop', () => {
       .getByRole('button', { name: 'Arcade' })
       .click();
     const win = page.getByRole('region', { name: 'Arcade', exact: true });
+    // The Arcade is code-split, so wait for it to load before reading the list.
+    await expect(win.locator('.game-item')).toHaveCount(8);
     const names = await win.locator('.game-item b').allTextContents();
-    expect(names).toHaveLength(8);
     for (const name of names) {
       // Sequential on purpose: one game at a time.
       /* oxlint-disable no-await-in-loop */

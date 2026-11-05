@@ -8,7 +8,7 @@ personal content and is **not** covered by that license. All rights reserved.
 - **The avatar's design:** the look of the character drawn in `src/character/` (face, hair,
   hoodie, expressions). You may reuse the code that animates it, but give your character its own
   look.
-- **Brand assets:** the अ mark and the AtulOS name, `public/og.png`, `public/favicon.svg`,
+- **Brand assets:** the अ mark and the AtulOS name, `public/og.jpg`, `public/favicon.svg`,
   `public/apple-touch-icon.png`.
 - **The résumé files** (`public/*_Resume.pdf` and `.docx`) and any marketing material.
 

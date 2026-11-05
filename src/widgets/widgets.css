@@ -61,6 +61,18 @@
 .gh-stats b {
   color: var(--fg);
 }
+.gh-stats a {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--ember);
+  font-weight: 600;
+  text-decoration: none;
+}
+.gh-stats a:hover,
+.gh-stats a:focus-visible {
+  text-decoration: underline;
+}
 .gh-empty {
   margin: 0;
   font-size: 13px;

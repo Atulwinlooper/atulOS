@@ -26,13 +26,16 @@ export const profile = {
   linkedinLabel: 'linkedin.com/in/winlooper',
   github: 'https://github.com/Atulwinlooper',
   githubUser: 'Atulwinlooper',
+  /** This site's source code. */
+  source: 'https://github.com/Atulwinlooper/atulOS',
   languages: ['English (fluent)', 'Hindi (native)'],
   summary:
     'Senior Mobile Engineer with 5+ years of experience designing, developing and delivering production-grade cross-platform mobile apps with Flutter and React Native. I work in Clean Architecture, BLoC, TypeScript and modular design, automate CI/CD, and own Android and iOS releases end to end, across enterprise SaaS, government, social and commerce.',
 };
 
 /**
- * Projects are described without product, client or employer names (they are under NDA).
+ * Most projects are described without product, client or employer names (they are under NDA).
+ * Apps that are public and cleared to share are named, with their store links.
  * Each one: what the product is, Atul's role, the engineering problems and the outcome.
  */
 export type Project = {
@@ -41,7 +44,7 @@ export type Project = {
   name: string;
   domain: string;
   category: 'Enterprise' | 'Commerce' | 'Government' | 'Social';
-  tech: 'Flutter' | 'React Native';
+  tech: 'Flutter' | 'React Native' | 'Android (Java)';
   color: string;
   ink: string;
   /** Who used it, at what scale. */
@@ -54,6 +57,8 @@ export type Project = {
   /** One factual line for the résumé (from the CV, no client names). */
   brief: string;
   stack: string[];
+  /** Public store listings, for apps that can be named. */
+  links?: { label: string; url: string }[];
 };
 
 export const projects: Project[] = [
@@ -166,71 +171,89 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: 'public',
-    short: 'GV',
-    name: 'Citizen services for public agencies',
-    domain: 'Government',
+    id: 'kapaas',
+    short: 'KM',
+    name: 'Kapaas Mitra',
+    domain: 'Agriculture · Government',
     category: 'Government',
     tech: 'Flutter',
     color: '#7FB7C9',
     ink: '#0B1A1F',
-    scale: 'Two government agencies',
+    scale: 'Cotton farmers in a national productivity project · 1K+ installs, rated 4.5',
     role: 'Led architecture and development',
     platforms: 'Android',
     summary:
-      'Mobile apps that let citizens sign in securely, fill in official forms and submit documents to two public agencies, without a visit to an office.',
+      'A Flutter app for the Confederation of Indian Textile Industry (CITI) and ICAR-Central Institute of Cotton Research, supporting a government cotton-productivity project under the National Food Security Mission. It brings cotton farmers the project’s recommended practices for their region.',
     challenges: [
       {
         title: 'Security from the first line',
-        text: 'Token-based authentication, encrypted storage for credentials and strict input validation on every form, reviewed against the agencies’ security requirements.',
+        text: 'Token-based authentication, encrypted storage for credentials and strict input validation on every form, built to meet government security review.',
       },
       {
         title: 'Fast on modest phones',
-        text: 'Leaner API payloads and fewer round trips made screens load quicker on the low-end devices and slow networks many citizens use.',
+        text: 'Leaner API payloads and fewer round trips, so screens load quickly on the low-end devices and slow rural networks many farmers use.',
       },
       {
         title: 'Built to outlast the team',
-        text: 'Clean Architecture with clear layers, so the agencies’ apps can be maintained and extended long after launch.',
+        text: 'Clean Architecture with clear layers, so the app can be maintained and extended long after launch.',
       },
     ],
     outcome:
-      'Both apps passed security review and run in production, with a much smaller set of findings than earlier builds.',
+      'Live on Google Play, rated 4.5 by farmers, and passed security review with far fewer findings than earlier builds.',
     brief:
-      'Led the architecture of apps for two government agencies; secure authentication and input validation cut vulnerabilities by 40%.',
+      'Led architecture of government apps including Kapaas Mitra (cotton productivity, CITI and ICAR-CICR); secure authentication and input validation cut vulnerabilities by 40%.',
     stack: ['Flutter', 'Dart', 'Clean Architecture', 'REST', 'Secure storage'],
-  },
-  {
-    id: 'community',
-    short: 'CM',
-    name: 'Community social app',
-    domain: 'Social',
-    category: 'Social',
-    tech: 'React Native',
-    color: '#8A8FD9',
-    ink: '#0E1030',
-    scale: 'A community of 1,000+ members',
-    role: 'Mobile developer',
-    platforms: 'Android and iOS',
-    summary:
-      'A social app with profiles, a feed and posts with photos and video, plus push notifications that bring members back when something happens.',
-    challenges: [
+    links: [
       {
-        title: 'Media that uploads reliably',
-        text: 'Camera capture, compression before upload, and progress with retry, so posts survive patchy mobile connections.',
-      },
-      {
-        title: 'Simple, predictable state',
-        text: 'Hookstate keeps feed and profile state small and local, with reusable components shared across screens.',
-      },
-      {
-        title: 'Automated deployments',
-        text: 'Android builds go out through GitHub Actions on every release.',
+        label: 'Google Play',
+        url: 'https://play.google.com/store/apps/details?id=com.mitra.kapas',
       },
     ],
-    outcome: 'Shipped and grown to a community of more than a thousand members.',
+  },
+  {
+    id: 'vpeeps',
+    short: 'VP',
+    name: 'VPeeps and the Viddi apps',
+    domain: 'Social · Live video',
+    category: 'Social',
+    tech: 'Android (Java)',
+    color: '#8A8FD9',
+    ink: '#0E1030',
+    scale: 'VPeeps: 100K+ installs on Google Play, plus three sister apps',
+    role: 'Android developer: features, maintenance and releases',
+    platforms: 'Android',
+    summary:
+      'A family of social apps from Viddi. VPeeps is a real-time social timeline with posts, reposts, replies and private chat; VPeepme is for short videos with music and effects; Park and Mirage Edge are music lounges where people video-chat, go live and listen to DJs together.',
+    challenges: [
+      {
+        title: 'Video, live and chat',
+        text: 'Built and maintained the video, live-streaming and chat features that sit at the centre of all four apps.',
+      },
+      {
+        title: 'Four apps, one release rhythm',
+        text: 'Owned Google Play releases across the family: builds, store listings and staged rollouts.',
+      },
+      {
+        title: 'Growing without breaking',
+        text: 'Added new features to live apps used by a large audience, fixing issues release by release instead of rewriting.',
+      },
+    ],
+    outcome: 'VPeeps passed 100,000 installs on Google Play; all four apps are live on the store.',
     brief:
-      'Built social networking features for 1,000+ members: push notifications, camera capture and media upload.',
-    stack: ['React Native', 'Hookstate', 'REST', 'Push notifications', 'GitHub Actions'],
+      'Android (Java) developer on VPeeps (100K+ installs), VPeepme, Park and Mirage Edge: video, live and chat features, and Play Store releases.',
+    stack: ['Java', 'Android SDK', 'REST', 'Real-time video', 'Chat', 'Push notifications'],
+    links: [
+      {
+        label: 'VPeeps',
+        url: 'https://play.google.com/store/apps/details?id=com.corewebconnections.vpops',
+      },
+      { label: 'VPeepme', url: 'https://play.google.com/store/apps/details?id=com.vpeep.me' },
+      { label: 'Park', url: 'https://play.google.com/store/apps/details?id=com.park.viddi' },
+      {
+        label: 'Mirage Edge',
+        url: 'https://play.google.com/store/apps/details?id=com.edgewet.com',
+      },
+    ],
   },
 ];
 
@@ -299,7 +322,7 @@ export const jobs: Job[] = [
     end: 'Oct 2023',
     stack: 'Flutter · Clean Architecture',
     points: [
-      'Led architecture and development of government apps with Flutter and Clean Architecture.',
+      'Led architecture and development of government apps with Flutter and Clean Architecture, including Kapaas Mitra for CITI and ICAR-CICR.',
       'Cut security vulnerabilities by 40% with secure authentication and input validation.',
       'Improved app performance by 30% through API optimisation.',
     ],
@@ -311,6 +334,7 @@ export const jobs: Job[] = [
     tools: [
       'Flutter',
       'React Native',
+      'Android (Java)',
       'REST',
       'Payment gateways',
       'Push notifications',
@@ -318,9 +342,10 @@ export const jobs: Job[] = [
     ],
     start: 'Mar 2022',
     end: 'Jun 2023',
-    stack: 'Flutter · React Native',
+    stack: 'Flutter · React Native · Android',
     points: [
       'Built production apps for social networking and eCommerce in Flutter and React Native.',
+      'Built video, live and chat features for Viddi’s Android apps (Java): VPeeps (100K+ installs), VPeepme, Park and Mirage Edge, and owned their Play Store releases.',
       'Integrated REST APIs, payment gateways, push notifications and media.',
       'Supported Android production deployments with GitHub Actions.',
     ],

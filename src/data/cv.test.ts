@@ -27,7 +27,7 @@ describe('CV content', () => {
 });
 
 describe('project write-ups', () => {
-  it('never name a client, product or employer', () => {
+  it('never name a client, product or employer, except apps cleared to share', () => {
     const names = /pixelque|lovoj|codenia|perfect ergonomics|\bqms\b/i;
     for (const p of projects) {
       const text = [
@@ -40,6 +40,14 @@ describe('project write-ups', () => {
       ].join(' ');
       expect(text).not.toMatch(names);
     }
+  });
+});
+
+describe('named apps', () => {
+  it('link only to their Google Play listings', () => {
+    for (const p of projects)
+      for (const l of p.links ?? [])
+        expect(l.url).toMatch(/^https:\/\/play\.google\.com\/store\/apps\/details\?id=[\w.]+$/);
   });
 });
 

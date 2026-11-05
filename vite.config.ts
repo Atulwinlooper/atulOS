@@ -1,19 +1,47 @@
+import { existsSync } from 'node:fs';
 import { defineConfig, loadEnv, type Plugin } from 'vite-plus';
 import react from '@vitejs/plugin-react';
 import { cspString, headersFile } from './security.config';
 
-/** Production-only hardening: a CSP <meta> tag and a `_headers` file for static hosts. */
-/** Fills __SITE_URL__ in index.html from VITE_SITE_URL; empty (relative URLs) when unset. */
+/**
+ * Fills __SITE_URL__ in index.html from VITE_SITE_URL (empty, so relative URLs, when unset) and
+ * writes robots.txt and sitemap.xml, which need absolute URLs.
+ */
 function siteUrl(): Plugin {
   let url = '';
+  let resume = '';
   return {
     name: 'atulos-site-url',
     configResolved(c) {
       url = (loadEnv(c.mode, c.root, 'VITE_').VITE_SITE_URL ?? '').replace(/\/+$/, '');
+      resume = existsSync(`${c.root}/public/Atul_Bhadoriya_Resume.pdf`)
+        ? '/Atul_Bhadoriya_Resume.pdf'
+        : '';
     },
     transformIndexHtml: (html) => html.replaceAll('__SITE_URL__', url),
+    generateBundle() {
+      const today = new Date().toISOString().slice(0, 10);
+      const pages = [`${url}/`, ...(resume ? [`${url}${resume}`] : [])];
+      this.emitFile({
+        type: 'asset',
+        fileName: 'robots.txt',
+        source: `User-agent: *\nAllow: /\n${url ? `\nSitemap: ${url}/sitemap.xml\n` : ''}`,
+      });
+      if (!url) return;
+      this.emitFile({
+        type: 'asset',
+        fileName: 'sitemap.xml',
+        source: `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${pages.map((p) => `  <url><loc>${p}</loc><lastmod>${today}</lastmod></url>`).join('\n')}
+</urlset>
+`,
+      });
+    },
   };
 }
+
+/** Production-only hardening: a CSP <meta> tag and a `_headers` file for static hosts. */
 
 function securityHeaders(): Plugin {
   return {

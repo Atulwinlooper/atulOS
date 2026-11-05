@@ -162,6 +162,35 @@
 .lock-enter:hover {
   background: rgba(255, 255, 255, 0.2);
 }
+.lock-role {
+  margin: -6px 0 2px;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.78);
+}
+.lock-quick {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 6px 14px;
+  font-size: 14px;
+}
+.lock-quick a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 0 12px;
+  border-radius: 999px;
+  color: #fff;
+  background: rgba(255, 122, 61, 0.22);
+  border: 1px solid rgba(255, 122, 61, 0.45);
+  text-decoration: none;
+  font-weight: 600;
+}
+.lock-quick a:hover,
+.lock-quick a:focus-visible {
+  background: rgba(255, 122, 61, 0.38);
+}
 
 /* native progress bar for the boot screen */
 progress.boot-bar {

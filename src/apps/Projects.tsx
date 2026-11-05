@@ -50,6 +50,10 @@ export function Projects() {
           <i className="dot" style={{ background: 'var(--ember)' }} />
           React Native
         </span>
+        <span className="side-item static">
+          <i className="dot" style={{ background: '#8FD9A8' }} />
+          Android (Java)
+        </span>
       </nav>
 
       <div className="plist">
@@ -147,6 +151,19 @@ export function Projects() {
           ))}
         </div>
         <div className="pd-actions">
+          {p.links?.map((l) => (
+            <a
+              key={l.url}
+              className="btn"
+              href={l.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${l.label} on Google Play (opens in a new tab)`}
+            >
+              {l.label === 'Google Play' ? 'Get it on Google Play' : l.label}{' '}
+              <Icon.external size={13} />
+            </a>
+          ))}
           <button
             type="button"
             className="btn primary"
@@ -155,9 +172,11 @@ export function Projects() {
             Ask me about this project
           </button>
         </div>
-        <p className="faint pd-nda">
-          Client and product names are left out: the work is under NDA.
-        </p>
+        {!p.links && (
+          <p className="faint pd-nda">
+            Client and product names are left out: the work is under NDA.
+          </p>
+        )}
       </article>
     </div>
   );

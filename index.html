@@ -3,39 +3,96 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>AtulOS · Atul Bhadoriya</title>
+    <title>Atul Bhadoriya · Senior Mobile Engineer | AtulOS</title>
     <meta
       name="description"
-      content="Atul Bhadoriya, Senior Mobile Engineer (Flutter, React Native). A portfolio you use like an operating system."
+      content="Atul Bhadoriya is a Senior Mobile Engineer in Delhi who builds Flutter and React Native apps. Explore his portfolio, built as an operating system you can use."
     />
     <meta name="theme-color" content="#0B0A0C" />
     <meta name="color-scheme" content="dark" />
     <meta name="author" content="Atul Bhadoriya" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="canonical" href="__SITE_URL__/" />
 
     <!-- Share previews. Set VITE_SITE_URL (in .env or the host's env) so the image URL is absolute. -->
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content="AtulOS" />
+    <meta property="og:locale" content="en_IN" />
+    <meta property="og:url" content="__SITE_URL__/" />
+    <meta property="profile:first_name" content="Atul" />
+    <meta property="profile:last_name" content="Bhadoriya" />
     <meta property="og:title" content="AtulOS · Atul Bhadoriya, Senior Mobile Engineer" />
     <meta
       property="og:description"
       content="Flutter and React Native apps that start fast, stay up, and ship every sprint. A portfolio you use like an operating system."
     />
-    <meta property="og:image" content="__SITE_URL__/og.png" />
+    <meta property="og:image" content="__SITE_URL__/og.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta
       property="og:image:alt"
-      content="The AtulOS desktop: Atul's character, his ID card, GitHub and LinkedIn widgets, and a dock."
+      content="AtulOS, a portfolio built as an operating system by Atul Bhadoriya, next to a view of its desktop."
     />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="AtulOS · Atul Bhadoriya, Senior Mobile Engineer" />
+    <meta
+      name="twitter:description"
+      content="A portfolio you use like an operating system: windows, a dock, a terminal, 8 games and 16 hidden secrets."
+    />
+    <meta name="twitter:image" content="__SITE_URL__/og.jpg" />
+    <meta
+      name="twitter:image:alt"
+      content="AtulOS, a portfolio built as an operating system by Atul Bhadoriya, next to a view of its desktop."
+    />
+
+    <!-- Who this site is about, for search engines. A data block: CSP does not run it. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "__SITE_URL__/#atul",
+            "name": "Atul Bhadoriya",
+            "jobTitle": "Senior Mobile Engineer",
+            "url": "__SITE_URL__/",
+            "image": "__SITE_URL__/og.jpg",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Delhi",
+              "addressCountry": "IN"
+            },
+            "knowsAbout": [
+              "Flutter",
+              "React Native",
+              "Dart",
+              "TypeScript",
+              "Mobile app development",
+              "Clean Architecture",
+              "CI/CD"
+            ],
+            "sameAs": ["https://www.linkedin.com/in/winlooper", "https://github.com/Atulwinlooper"]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "__SITE_URL__/#site",
+            "name": "AtulOS",
+            "url": "__SITE_URL__/",
+            "author": { "@id": "__SITE_URL__/#atul" }
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
     <noscript>
       <p style="font: 16px system-ui; color: #f3eee8; background: #0b0a0c; padding: 24px">
-        AtulOS needs JavaScript. Atul Bhadoriya is a Senior Mobile Engineer (Flutter, React Native)
-        in Delhi. Find him on LinkedIn, or download the
-        <a href="/Atul_Bhadoriya_Resume.pdf" style="color: #ff7a3d">résumé (PDF)</a>.
+        AtulOS needs JavaScript. Atul Bhadoriya is a Senior Mobile Engineer in Delhi with 5+ years
+        of building Flutter and React Native apps. Find him on
+        <a href="https://www.linkedin.com/in/winlooper" style="color: #ff7a3d">LinkedIn</a> and
+        <a href="https://github.com/Atulwinlooper" style="color: #ff7a3d">GitHub</a>, or download
+        the <a href="/Atul_Bhadoriya_Resume.pdf" style="color: #ff7a3d">résumé (PDF)</a>.
       </p>
     </noscript>
     <div id="root"></div>

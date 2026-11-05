@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { Avatar } from '../character/Avatar';
 import { Character } from '../character/Character';
 import { profile } from '../data/cv';
+import { RESUME_PDF } from '../data/resume';
 import { Icon } from './icons';
 import { useOS } from './store';
 import { delhiDate, delhiTime, useNow } from './useNow';
@@ -15,6 +16,8 @@ export function Lock() {
   useEffect(() => {
     enterBtn.current?.focus({ preventScroll: true });
     const k = (e: KeyboardEvent) => {
+      // Let Enter on the quick links below open them instead of unlocking.
+      if (e.target instanceof HTMLAnchorElement) return;
       if (e.key === 'Enter' || e.key === ' ' || e.key === 'Escape') {
         e.preventDefault();
         setPhase('desktop');
@@ -50,6 +53,7 @@ export function Lock() {
           <Avatar />
         </div>
         <h1 className="lock-name">{profile.name}</h1>
+        <p className="lock-role">{profile.role} · Flutter &amp; React Native</p>
         <button
           ref={enterBtn}
           type="button"
@@ -59,6 +63,16 @@ export function Lock() {
           Enter AtulOS <Icon.arrow size={16} />
         </button>
         <span className="muted">No password. Click anywhere or press Enter to wake him up.</span>
+        {/* The fast path for a busy recruiter: no need to explore first. */}
+        <nav className="lock-quick" aria-label="Quick links">
+          <span className="muted">In a hurry?</span>
+          <a href={RESUME_PDF} download>
+            Résumé (PDF)
+          </a>
+          <a href={profile.linkedin} target="_blank" rel="noopener noreferrer">
+            LinkedIn
+          </a>
+        </nav>
       </div>
     </main>
   );

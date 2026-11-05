@@ -53,11 +53,11 @@ export function GitHubCard() {
             <span>
               <b>{gh.total}</b> contributions, last 20 weeks
             </span>
-            {gh.repos !== undefined && (
-              <span>
-                <b>{gh.repos}</b> public repos
-              </span>
-            )}
+            {/* Most of Atul's work is in private client repos, so link this site's source instead
+                of a public-repo count that undersells it. */}
+            <a href={profile.source} target="_blank" rel="noopener noreferrer">
+              This site's source <Icon.external size={12} />
+            </a>
           </div>
         </>
       ) : (

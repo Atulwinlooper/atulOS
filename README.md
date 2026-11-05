@@ -1,11 +1,11 @@
 # AtulOS
 
-[![Live site](https://img.shields.io/badge/live-atulos.pages.dev-ff7a3d)](https://atulos.pages.dev)
+[![Live site](https://img.shields.io/badge/live-atulbhadoriya.me-ff7a3d)](https://atulbhadoriya.me)
 [![License: MIT](https://img.shields.io/badge/code-MIT-informational)](LICENSE)
 ![React 18](https://img.shields.io/badge/React-18-61dafb)
 ![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178c6)
 
-![AtulOS desktop: the ID card, the avatar, widgets and the dock](public/og.png)
+![AtulOS desktop: the ID card, the avatar, widgets and the dock](public/og.jpg)
 
 Atul Bhadoriya's portfolio, built as an operating system: a boot sequence, a lock screen, a desktop
 with widgets, windowed apps with a genie minimise, a magnifying dock, an eight-game Arcade, a
@@ -26,7 +26,7 @@ npm run resume         # builds the résumé PDF and Word file (they are not in 
 npm run dev            # vp dev, opens http://localhost:5173
 ```
 
-**Live:** https://atulos.pages.dev
+**Live:** https://atulbhadoriya.me
 
 | Script              | What it does                                 |
 | ------------------- | -------------------------------------------- |
@@ -66,7 +66,7 @@ You're welcome to build your own portfolio from this. The code is MIT; the perso
 3. **Your CV:** rewrite `src/data/cv.ts` (profile, jobs, projects, skills, education). Every app,
    the Terminal and the résumé read from it.
 4. **Your résumé:** change the headline and file name in `src/data/resume.ts`, then `npm run resume`.
-5. **Your look:** replace `public/og.png` (1200×630), `public/favicon.svg` and
+5. **Your look:** replace `public/og.jpg` (1200×630), `public/favicon.svg` and
    `public/apple-touch-icon.png`; change the अ mark in `src/os/Boot.tsx` and the dock; restyle the
    avatar in `src/character/` (keep the animation code, change the face, hair and clothes).
    Theme colours are tokens at the top of `src/styles.css`.
@@ -165,7 +165,7 @@ The passphrase is `PASSPHRASE` in `src/eggs/secrets.ts`; change it together with
 `npm run build` produces a static site in `dist/`. Drop it on Vercel, Netlify, Cloudflare Pages or
 GitHub Pages; no server is needed. Run `npm run resume` first so the résumé is in `dist/`.
 
-**Cloudflare Pages** (how https://atulos.pages.dev is hosted):
+**Cloudflare Pages** (how https://atulbhadoriya.me is hosted):
 
 ```bash
 npm run resume && npm run build

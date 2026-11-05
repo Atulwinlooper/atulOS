@@ -317,6 +317,9 @@ button.side-item:hover {
 }
 .pd-actions {
   margin-top: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 @container (max-width: 700px) {
   .projects {
