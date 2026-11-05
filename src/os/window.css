@@ -1,0 +1,137 @@
+.win {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  border-radius: 14px;
+  overflow: hidden;
+  /* Solid, so busy desktops never show through app content (and it is cheaper to draw). */
+  background: var(--win-bg, #181518);
+  border: 1px solid var(--tint-3);
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 var(--tint-2);
+  transform-origin: center;
+  transition: box-shadow 0.2s;
+  min-width: 280px;
+}
+.win:not(.focused) {
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+}
+.win.max {
+  border-radius: 0;
+  transition:
+    left 0.25s,
+    top 0.25s,
+    width 0.25s,
+    height 0.25s;
+}
+.win-bar {
+  flex: none;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0 14px;
+  border-bottom: 1px solid var(--tint-2);
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+}
+.win-bar:active {
+  cursor: grabbing;
+}
+.lights {
+  display: flex;
+  margin-left: -5px;
+}
+/* 24px hit targets (WCAG 2.2 target size); the 13px light is drawn inside. */
+.tlb {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+.tlb::before {
+  content: '';
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--tl, #4a454b);
+}
+.tlb:focus-visible {
+  outline: 2px solid var(--ember);
+  outline-offset: -2px;
+}
+.win.focused .tlb.close {
+  --tl: #ff5f57;
+}
+.win.focused .tlb.min {
+  --tl: #febc2e;
+}
+.win.focused .tlb.zoom {
+  --tl: #28c840;
+}
+.win-title {
+  font-weight: 600;
+  font-size: 13px;
+  white-space: nowrap;
+}
+.win:not(.focused) .win-title {
+  color: var(--fg-3);
+}
+.win-tools {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+.win-body {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  position: relative;
+}
+.win:focus {
+  outline: none;
+}
+.win:focus-visible {
+  outline: 2px solid var(--ember);
+}
+h2.win-title {
+  margin: 0;
+}
+.win-body:focus,
+.sheet-body:focus,
+.resume-scroll:focus {
+  outline: none;
+}
+.win-body:focus-visible,
+.sheet-body:focus-visible,
+.resume-scroll:focus-visible {
+  outline: 2px solid var(--ember);
+  outline-offset: -2px;
+}
+
+/* Closing: a quick shrink and fade, then the store removes it (CLOSE_MS in store.tsx). */
+.win.closing {
+  pointer-events: none;
+  animation: win-close 0.22s cubic-bezier(0.4, 0, 1, 1) forwards;
+}
+@keyframes win-close {
+  to {
+    opacity: 0;
+    transform: translateY(10px) scale(0.92);
+    filter: blur(2px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .win.closing {
+    animation: none;
+  }
+}

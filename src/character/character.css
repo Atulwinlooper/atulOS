@@ -1,0 +1,167 @@
+.char {
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  outline-offset: 8px;
+}
+.char:focus-visible {
+  border-radius: 40px;
+}
+.char-poked svg {
+  animation: char-jolt 0.35s;
+}
+.char-dizzy svg {
+  animation: char-wobble 0.9s ease-in-out infinite;
+}
+.char .spiral {
+  animation: char-spin 0.8s linear infinite;
+}
+.char .stars {
+  transform-origin: 200px 96px;
+  animation: char-spin 2.4s linear infinite;
+}
+.char-bubble {
+  position: absolute;
+  left: 72%;
+  top: 2%;
+  z-index: 2;
+  max-width: 240px;
+  padding: 10px 14px;
+  border-radius: 16px 16px 16px 4px;
+  background: var(--inverse-bg);
+  color: var(--inverse-fg);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.35;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  animation: pop-in 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: normal;
+}
+.char-z {
+  position: absolute;
+  left: 66%;
+  top: 4%;
+  display: flex;
+  gap: 2px;
+  font-weight: 700;
+  color: var(--fg-2);
+  pointer-events: none;
+}
+.char-z span {
+  animation: char-z 2.4s ease-in-out infinite;
+  font-size: 22px;
+}
+.char-z span:nth-child(2) {
+  animation-delay: 0.5s;
+  font-size: 28px;
+}
+.char-z span:nth-child(3) {
+  animation-delay: 1s;
+  font-size: 36px;
+}
+@keyframes char-z {
+  0% {
+    opacity: 0;
+    transform: translate(0, 10px);
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(16px, -30px);
+  }
+}
+@keyframes char-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes char-jolt {
+  30% {
+    transform: translateY(-3%) scale(1.02, 0.97);
+  }
+}
+@keyframes char-wobble {
+  25% {
+    transform: rotate(-3deg);
+  }
+  75% {
+    transform: rotate(3deg);
+  }
+}
+button.char {
+  display: block;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+}
+.char > svg {
+  display: block;
+}
+
+/* Hoodie strings: tug one and it stretches and springs back. */
+.char-string {
+  cursor: grab;
+  transform-box: view-box;
+  transform-origin: 200px 342px;
+}
+.char-string.tug-0 {
+  animation: char-tug-a 0.6s cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+.char-string.tug-1 {
+  animation: char-tug-b 0.6s cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+@keyframes char-tug-a {
+  30% {
+    transform: translateY(16px) scaleY(1.06);
+  }
+}
+@keyframes char-tug-b {
+  30% {
+    transform: translateY(16px) scaleY(1.06);
+  }
+}
+.char-hood {
+  animation: char-hood-up 0.5s cubic-bezier(0.2, 1.4, 0.4, 1);
+  transform-box: view-box;
+  transform-origin: 200px 320px;
+}
+@keyframes char-hood-up {
+  from {
+    opacity: 0;
+    transform: translateY(70px) scale(0.92);
+  }
+}
+/* The yawning mouth. Not "char-yawn": that is the whole character's class while he yawns. */
+.ch-yawn-mouth {
+  transform-box: fill-box;
+  transform-origin: 50% 30%;
+  animation: ch-yawn-mouth 2s ease-in-out;
+}
+@keyframes ch-yawn-mouth {
+  0% {
+    transform: scale(0.3, 0.2);
+  }
+  35%,
+  70% {
+    transform: scale(1, 1);
+  }
+  100% {
+    transform: scale(0.4, 0.3);
+  }
+}
+.char-happy svg {
+  animation: char-jolt 0.5s;
+}
+@media (prefers-reduced-motion: reduce) {
+  .char-string,
+  .char-hood,
+  .ch-yawn-mouth {
+    animation: none !important;
+  }
+}

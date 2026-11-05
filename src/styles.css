@@ -1,0 +1,320 @@
+/* Yatra One (SIL OFL 1.1), subset to the single glyph AtulOS uses: अ (U+0905). 2 KB instead of 72. */
+@font-face {
+  font-family: 'Yatra One';
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url('./assets/fonts/yatra-one-a.woff2') format('woff2');
+  unicode-range: U+0905;
+}
+
+/* AtulOS · obsidian and ember.
+   One committed dark look (it is an operating system), one warm accent, frosted glass. */
+:root {
+  --bg: #0b0a0c;
+  --fg: #f3eee8;
+  --fg-2: #c4bab3;
+  --fg-3: #a59b94;
+  --ember: #ff7a3d;
+  --ember-hi: #ff9a63;
+  --ember-deep: #c9572a;
+  --ink: #160c07;
+  --bone: #efe9e1;
+  --cool: #7fb7c9;
+  --glass: rgba(30, 26, 29, 0.58);
+  --glass-strong: rgba(24, 21, 24, 0.96);
+  --line: rgba(255, 255, 255, 0.09);
+  --line-2: rgba(255, 255, 255, 0.14);
+  --shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+  --font: 'Onest Variable', 'Onest', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --deva: 'Yatra One', 'Noto Sans Devanagari', 'Kohinoor Devanagari', serif;
+  --menubar: 30px;
+  --wall: radial-gradient(60% 55% at 50% 40%, #2c201c 0%, #161215 52%, #0b0a0c 100%);
+  /* Surfaces and tints. Light mode swaps these; dark "screens" (games, boot) reset them. */
+  --win-bg: #181518;
+  --bar-bg: rgba(12, 10, 12, 0.55);
+  --dock-bg: rgba(36, 31, 34, 0.5);
+  --tint-1: rgba(255, 255, 255, 0.04);
+  --tint-2: rgba(255, 255, 255, 0.06);
+  --tint-3: rgba(255, 255, 255, 0.1);
+  --tint-4: rgba(255, 255, 255, 0.16);
+  --inverse-bg: #f3eee8;
+  --inverse-fg: #17120f;
+  color-scheme: dark;
+}
+:root[data-wall='midnight'] {
+  --wall: radial-gradient(60% 55% at 50% 40%, #1a2333 0%, #10141d 55%, #08090d 100%);
+}
+:root[data-wall='dawn'] {
+  --wall: radial-gradient(70% 60% at 50% 35%, #5a3326 0%, #2a1a1d 55%, #120d10 100%);
+}
+
+/* Lights on: the same room in daylight. Pull the bulb's cord to switch. */
+:root[data-theme='light'] {
+  --bg: #efe9e1;
+  --fg: #1f1a16;
+  --fg-2: #5b524b;
+  --fg-3: #776c64;
+  --ember-hi: #c94f1a; /* darker, so ember text keeps its contrast on light surfaces */
+  --cool: #2f7189;
+  --glass: rgba(252, 248, 243, 0.66);
+  --glass-strong: rgba(250, 246, 241, 0.97);
+  --line: rgba(40, 28, 20, 0.1);
+  --line-2: rgba(40, 28, 20, 0.17);
+  --shadow: 0 20px 50px rgba(60, 40, 25, 0.18);
+  --win-bg: #fbf8f4;
+  --bar-bg: rgba(250, 246, 241, 0.62);
+  --dock-bg: rgba(250, 246, 241, 0.55);
+  --tint-1: rgba(40, 28, 20, 0.035);
+  --tint-2: rgba(40, 28, 20, 0.055);
+  --tint-3: rgba(40, 28, 20, 0.085);
+  --tint-4: rgba(40, 28, 20, 0.13);
+  --inverse-bg: #1f1a16;
+  --inverse-fg: #f6f1ea;
+  --wall: radial-gradient(60% 55% at 50% 40%, #fff4e8 0%, #f3e3d3 55%, #e4d0be 100%);
+  color-scheme: light;
+}
+:root[data-theme='light'][data-wall='midnight'] {
+  --wall: radial-gradient(60% 55% at 50% 40%, #f1f5fb 0%, #dfe7f2 55%, #cbd6e4 100%);
+}
+:root[data-theme='light'][data-wall='dawn'] {
+  --wall: radial-gradient(70% 60% at 50% 35%, #ffe8da 0%, #f5d6c8 55%, #e6c3b4 100%);
+}
+/* Screens that stay dark in either theme: games, the terminal, boot and lock. */
+:root[data-theme='light'] :is(.game-stage, .term, .boot, .lock, .rh-diff pre) {
+  --fg: #f3eee8;
+  --fg-2: #c4bab3;
+  --fg-3: #a59b94;
+  --ember-hi: #ff9a63;
+  --line: rgba(255, 255, 255, 0.09);
+  --line-2: rgba(255, 255, 255, 0.14);
+  --tint-1: rgba(255, 255, 255, 0.04);
+  --tint-2: rgba(255, 255, 255, 0.06);
+  --tint-3: rgba(255, 255, 255, 0.1);
+  --tint-4: rgba(255, 255, 255, 0.16);
+  color: var(--fg);
+}
+
+/* Switching themes: the new look spreads out from the bulb in a circle of light. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+:root[data-vt] ::view-transition-new(root) {
+  animation: lights 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+@keyframes lights {
+  from {
+    clip-path: circle(0 at var(--vt-x) var(--vt-y));
+  }
+  to {
+    clip-path: circle(150vmax at var(--vt-x) var(--vt-y));
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+html,
+body,
+#root {
+  height: 100%;
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+button,
+input,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+button {
+  cursor: pointer;
+}
+a {
+  color: var(--ember-hi);
+}
+:focus-visible {
+  outline: 2px solid var(--ember);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+::selection {
+  background: var(--ember);
+  color: var(--ink);
+}
+.mono {
+  font-family: var(--mono);
+}
+.deva {
+  font-family: var(--deva);
+}
+.muted {
+  color: var(--fg-2);
+}
+.faint {
+  color: var(--fg-3);
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ---------- surfaces ---------- */
+.glass {
+  background: var(--glass);
+  backdrop-filter: blur(24px) saturate(140%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+  border: 1px solid var(--line);
+  box-shadow:
+    inset 0 1px 0 var(--tint-3),
+    var(--shadow);
+}
+.widget {
+  border-radius: 20px;
+  padding: 18px 20px;
+}
+.label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 0 16px;
+  border-radius: 10px;
+  border: 1px solid var(--line-2);
+  background: var(--tint-2);
+  color: var(--fg);
+  font-weight: 600;
+  font-size: 13px;
+  text-decoration: none;
+  transition:
+    background 0.15s,
+    transform 0.15s;
+}
+.btn:hover {
+  background: var(--tint-3);
+}
+.btn:active {
+  transform: scale(0.97);
+}
+.btn.primary {
+  background: var(--ember);
+  border-color: var(--ember);
+  color: var(--ink);
+}
+.btn.primary:hover {
+  background: var(--ember-hi);
+}
+.btn.light {
+  background: var(--inverse-bg);
+  border-color: var(--inverse-bg);
+  color: var(--inverse-fg);
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--tint-2);
+  font-family: var(--mono);
+  font-size: 11px;
+}
+.wall {
+  position: absolute;
+  inset: 0;
+  background: var(--wall);
+}
+.wall::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(var(--tint-2) 1px, transparent 1.4px);
+  background-size: 22px 22px;
+}
+
+/* ---------- retro mode (konami) ---------- */
+:root.retro body {
+  font-family: var(--mono);
+}
+:root.retro #root {
+  filter: sepia(0.6) hue-rotate(60deg) saturate(1.8) contrast(1.1);
+}
+:root.retro #root::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.18) 0 1px, transparent 1px 3px);
+}
+
+/* ---------- motion ---------- */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+}
+@keyframes dock-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-22px);
+  }
+  55% {
+    transform: translateY(0);
+  }
+  72% {
+    transform: translateY(-9px);
+  }
+}
+@keyframes pulse {
+  50% {
+    box-shadow: 0 0 0 8px rgba(255, 122, 61, 0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

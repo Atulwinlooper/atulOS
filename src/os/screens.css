@@ -1,0 +1,221 @@
+/* ---------- boot ---------- */
+.boot {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  cursor: default;
+  animation: fade-in 0.4s;
+}
+.boot-glow {
+  position: absolute;
+  width: 560px;
+  height: 560px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(255, 122, 61, 0.13), transparent);
+  transform: translateY(-40px);
+}
+.boot-mark {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 124px;
+  height: 124px;
+  border-radius: 34px;
+  background: linear-gradient(160deg, #ff9a63, #d94a16);
+  color: var(--ink);
+  font-size: 76px;
+  line-height: 1;
+  box-shadow:
+    0 0 80px rgba(255, 122, 61, 0.35),
+    inset 0 2px 0 rgba(255, 255, 255, 0.35);
+  animation: pop-in 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.boot-name {
+  position: relative;
+  font-size: 28px;
+  font-weight: 300;
+  margin-bottom: 26px;
+}
+.boot-name b {
+  font-weight: 600;
+}
+.boot-bar {
+  position: relative;
+  width: 220px;
+  height: 5px;
+  border-radius: 999px;
+  background: #2a2729;
+  overflow: hidden;
+}
+.boot-bar i {
+  display: block;
+  height: 100%;
+  background: var(--fg);
+  border-radius: 999px;
+}
+.boot-log {
+  position: relative;
+  font-size: 12px;
+  color: #8f8680;
+  height: 18px;
+}
+.boot-foot {
+  position: absolute;
+  bottom: calc(28px + env(safe-area-inset-bottom));
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: #8f8680;
+  text-align: center;
+  padding: 0 16px;
+}
+
+/* ---------- lock ---------- */
+.lock {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  animation: fade-in 0.6s;
+  cursor: default;
+}
+.lock-sleeper {
+  position: absolute;
+  left: 50%;
+  bottom: -18%;
+  transform: translateX(-50%);
+  filter: blur(12px);
+  opacity: 0.55;
+}
+.lock-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(11, 10, 12, 0.1), rgba(11, 10, 12, 0.55));
+}
+.lock-time {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: max(9vh, 60px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.lock-date {
+  font-size: clamp(16px, 2vw, 22px);
+  font-weight: 500;
+}
+.lock-clock {
+  font-size: clamp(88px, 13vw, 160px);
+  font-weight: 200;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+.lock-zone {
+  font-size: 12px;
+  color: var(--fg-2);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.lock-user {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: calc(max(8vh, 40px) + env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+  animation: rise-in 0.8s 0.2s backwards;
+}
+.lock-user b {
+  font-size: 18px;
+  font-weight: 600;
+}
+.lock-avatar {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 3px rgba(255, 255, 255, 0.14),
+    0 10px 30px rgba(0, 0, 0, 0.5);
+}
+.lock-enter {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 0 22px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(20px);
+  font-size: 15px;
+  font-weight: 500;
+}
+.lock-enter:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* native progress bar for the boot screen */
+progress.boot-bar {
+  appearance: none;
+  -webkit-appearance: none;
+  border: 0;
+  display: block;
+}
+progress.boot-bar::-webkit-progress-bar {
+  background: #2a2729;
+  border-radius: 999px;
+}
+progress.boot-bar::-webkit-progress-value {
+  background: var(--fg);
+  border-radius: 999px;
+}
+progress.boot-bar::-moz-progress-bar {
+  background: var(--fg);
+  border-radius: 999px;
+}
+.boot-name {
+  margin: 0 0 26px;
+}
+.boot-skip {
+  position: absolute;
+  right: max(20px, env(safe-area-inset-right));
+  top: calc(16px + env(safe-area-inset-top));
+  min-height: 40px;
+  padding: 0 14px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  font-size: 13px;
+  color: #b8afa9;
+}
+.boot-skip:hover {
+  color: var(--fg);
+}
+.lock-catch {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: none;
+  cursor: default;
+}
+.lock-time {
+  pointer-events: none;
+  z-index: 1;
+}
+.lock-user {
+  z-index: 1;
+}
+.lock-name {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}

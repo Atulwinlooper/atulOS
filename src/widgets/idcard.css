@@ -1,0 +1,182 @@
+.idc-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+.idc-strap {
+  position: absolute;
+  inset: 0;
+  overflow: visible;
+}
+.idc-clip {
+  position: absolute;
+  width: 32px;
+  height: 20px;
+  border-radius: 6px;
+  background: linear-gradient(#d9d4ce, #8e8780);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+.idc {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  pointer-events: auto;
+  cursor: grab;
+  touch-action: none;
+  transform-origin: 50% 14px; /* the hole the strap goes through */
+  perspective: 1200px;
+  text-align: left;
+  will-change: transform;
+}
+.idc:active {
+  cursor: grabbing;
+}
+.idc:focus-visible {
+  outline-offset: 4px;
+  border-radius: 18px;
+}
+.idc-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.idc-inner.flipped {
+  transform: rotateY(180deg);
+}
+.idc-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+}
+.idc-front {
+  background: var(--bone);
+  color: #17120f;
+}
+.idc-top {
+  position: relative;
+  height: 60px;
+  background: var(--ember);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 0 16px 10px;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+}
+.idc-hole {
+  position: absolute;
+  left: 50%;
+  top: 10px;
+  width: 44px;
+  height: 9px;
+  margin-left: -22px;
+  border-radius: 6px;
+  background: #2c201c;
+}
+.idc-body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.idc-who {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.idc-who b {
+  display: block;
+  font-size: 19px;
+  line-height: 1.15;
+}
+.idc-who small {
+  font-size: 13px;
+  color: #5c524b;
+}
+.idc-photo {
+  width: 70px;
+  height: 70px;
+  border-radius: 14px;
+  overflow: hidden;
+  flex: none;
+}
+.idc-fields {
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 12px;
+}
+.idc-fields dt {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #6e635b;
+}
+.idc-fields dd {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 600;
+}
+.idc-barcode {
+  height: 32px;
+  border-radius: 4px;
+  background: repeating-linear-gradient(
+    90deg,
+    #17120f 0 2px,
+    transparent 2px 4px,
+    #17120f 4px 7px,
+    transparent 7px 9px,
+    #17120f 9px 10px,
+    transparent 10px 13px
+  );
+}
+.idc-hint {
+  font-size: 11px;
+  color: #6e635b;
+}
+.idc-back {
+  transform: rotateY(180deg);
+  background: #1a1416;
+  border: 2px solid var(--ember);
+  color: var(--fg);
+  padding: 38px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.idc-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ember-hi);
+}
+.idc-msg {
+  font-size: 23px;
+  line-height: 1.15;
+}
+.idc-qr {
+  width: 92px;
+  height: 92px;
+  padding: 8px;
+  border-radius: 8px;
+  background: var(--fg);
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 3px;
+}
+.idc-mail {
+  font-size: 12px;
+  word-break: break-all;
+}

@@ -1,0 +1,91 @@
+/* The pendant bulb: a cord from a ceiling rose on the menu bar, and the lamp, which you pull. */
+.bulb-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+}
+.bulb-cord {
+  position: absolute;
+  inset: 0;
+  overflow: visible;
+}
+.bulb-cord path {
+  stroke: #4a4245;
+}
+:root[data-theme='light'] .bulb-cord path {
+  stroke: #6e635b;
+}
+.bulb-rose {
+  position: absolute;
+  width: 14px;
+  height: 6px;
+  border-radius: 0 0 6px 6px;
+  background: linear-gradient(#8f8680, #5c524b);
+}
+.bulb-lamp {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  transform-origin: 50% 0; /* it hangs from the top of the socket, under the cord */
+  pointer-events: auto;
+  touch-action: none;
+  cursor: grab;
+  will-change: transform;
+}
+.bulb-lamp:active {
+  cursor: grabbing;
+}
+.bulb-lamp:focus-visible {
+  outline-offset: 2px;
+  border-radius: 14px;
+}
+.bulb-lamp svg {
+  position: relative;
+  z-index: 1;
+  display: block;
+}
+.bulb-glow {
+  position: absolute;
+  left: 50%;
+  top: 40px;
+  width: 260px;
+  height: 260px;
+  margin: -130px 0 0 -130px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(255, 214, 138, 0.55), rgba(255, 214, 138, 0));
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none;
+}
+.bulb-layer.on .bulb-glow {
+  opacity: 1;
+}
+.bulb-layer.on .bulb-lamp svg {
+  filter: drop-shadow(0 0 10px rgba(255, 200, 110, 0.9));
+}
+.bulb-hint {
+  position: absolute;
+  width: max-content;
+  max-width: 220px;
+  padding: 6px 10px;
+  border-radius: 10px;
+  background: var(--inverse-bg);
+  color: var(--inverse-fg);
+  font-size: 12px;
+  font-weight: 600;
+  animation: pop-in 0.2s;
+}
+/* Phone home screen: a short cord from the top edge. */
+.bulb-layer.compact .bulb-hint {
+  left: auto !important;
+  right: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .bulb-glow {
+    transition: none;
+  }
+}

@@ -1,0 +1,99 @@
+.dock {
+  position: absolute;
+  left: 50%;
+  bottom: 14px;
+  transform: translateX(-50%);
+  z-index: 5000;
+  padding: 8px 12px;
+  border-radius: 24px;
+  background: var(--dock-bg);
+  border: 1px solid var(--tint-3);
+  max-width: calc(100vw - 24px);
+}
+.dock ul {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+/* Each slot is as wide as its icon (--s, set every frame). The bar keeps its resting height;
+   magnified icons rise above it, as on macOS. */
+.dock-item {
+  --s: 52;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  width: calc(var(--s) * 1px);
+  height: 60px;
+}
+.dock-btn {
+  position: absolute;
+  left: 0;
+  bottom: 8px;
+  width: calc(var(--s) * 1px);
+  height: calc(var(--s) * 1px);
+  padding: 0;
+  border: 0;
+  background: none;
+}
+.dock-icon {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 88px;
+  height: 88px;
+  margin-left: -44px;
+  transform: scale(calc(var(--s) / 88));
+  transform-origin: 50% 100%;
+}
+.dock-btn:focus-visible {
+  outline: none;
+}
+.dock-btn:focus-visible .dock-icon {
+  outline: 3px solid var(--ember);
+  outline-offset: 4px;
+  border-radius: 24px;
+}
+.dock-btn.bounce {
+  animation: dock-bounce 0.7s ease-out;
+}
+.dock-tip {
+  position: absolute;
+  bottom: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 5px 10px;
+  border-radius: 8px;
+  background: var(--glass-strong);
+  border: 1px solid var(--tint-3);
+  font-size: 12px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.12s;
+}
+.dock-btn:hover .dock-tip,
+.dock-btn:focus-visible .dock-tip {
+  opacity: 1;
+}
+.dock-dot {
+  position: absolute;
+  bottom: 0;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: transparent;
+}
+.dock-dot.on {
+  background: var(--fg);
+}
+.dock-sep {
+  width: 1px;
+  height: 44px;
+  margin: 0 2px 10px;
+  background: var(--tint-4);
+}
