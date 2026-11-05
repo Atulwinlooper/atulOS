@@ -1843,3 +1843,42 @@ button.side-item:hover {
   outline: 1.5px dashed var(--ember);
   color: var(--ember-hi);
 }
+
+/* Shown while a code-split app downloads, or if it fails to. */
+.app-loading {
+  height: 100%;
+  min-height: 240px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  text-align: center;
+  padding: 24px;
+  color: var(--fg-2);
+}
+.app-loading-icon {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+  color: #fff;
+  background: linear-gradient(160deg, #6b5bd6, #3b2f8f);
+  animation: app-loading-pulse 1.1s ease-in-out infinite alternate;
+}
+@keyframes app-loading-pulse {
+  from {
+    transform: scale(0.94);
+    opacity: 0.75;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .app-loading-icon {
+    animation: none;
+  }
+}
