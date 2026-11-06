@@ -121,9 +121,31 @@ function usePhone() {
   const [phone, setPhone] = useState(() => matchMedia(q).matches);
   useEffect(() => {
     const m = matchMedia(q);
-    const on = () => setPhone(m.matches);
+    // An on-screen keyboard shrinks the window. Switching layouts then would unmount the field
+    // being typed in, close the keyboard, and flip straight back: so hold still while typing.
+    const typing = () => {
+      const el = document.activeElement;
+      return (
+        el instanceof HTMLTextAreaElement ||
+        (el instanceof HTMLInputElement && !['button', 'checkbox', 'radio'].includes(el.type))
+      );
+    };
+    const on = () => {
+      if (!typing()) setPhone(m.matches);
+    };
+    // Once typing stops and the keyboard is gone, catch up with any change (say, a rotation).
+    let t = 0;
+    const settle = () => {
+      window.clearTimeout(t);
+      t = window.setTimeout(on, 400);
+    };
     m.addEventListener('change', on);
-    return () => m.removeEventListener('change', on);
+    document.addEventListener('focusout', settle);
+    return () => {
+      window.clearTimeout(t);
+      m.removeEventListener('change', on);
+      document.removeEventListener('focusout', settle);
+    };
   }, []);
   return phone;
 }

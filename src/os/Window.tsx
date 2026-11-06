@@ -32,8 +32,12 @@ export function Window({ win, title, children }: Props) {
   useLayoutEffect(() => {
     const el = ref.current;
     if (!el) return;
+    // On touch screens, focusing a text field pops up the keyboard, so start on a button there.
+    const touch = matchMedia('(pointer: coarse)').matches;
     const first = el.querySelector<HTMLElement>(
-      '.win-body input, .win-body textarea, .win-body button, .win-body a[href]',
+      touch
+        ? '.win-body button, .win-body a[href]'
+        : '.win-body input, .win-body textarea, .win-body button, .win-body a[href]',
     );
     (first ?? el).focus({ preventScroll: true });
     if (prefersReducedMotion()) return;

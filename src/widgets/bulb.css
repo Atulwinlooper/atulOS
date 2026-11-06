@@ -11,7 +11,7 @@
   overflow: visible;
 }
 .bulb-cord path {
-  stroke: #4a4245;
+  stroke: #7a7074;
 }
 :root[data-theme='light'] .bulb-cord path {
   stroke: #6e635b;

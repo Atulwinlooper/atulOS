@@ -165,9 +165,9 @@ export function Bulb({ x, compact = false }: { x: number; compact?: boolean }) {
         <svg viewBox={`0 0 40 ${TOTAL}`} width={W} height={TOTAL} aria-hidden="true">
           <defs>
             <radialGradient id={`bulb-glass-${compact ? 'c' : 'd'}`} cx=".5" cy=".45" r=".6">
-              <stop offset="0" stopColor={on ? '#FFF8DC' : '#4a4447'} />
-              <stop offset=".7" stopColor={on ? '#FFD98A' : '#2c282b'} />
-              <stop offset="1" stopColor={on ? '#F4B860' : '#1d1a1c'} />
+              <stop offset="0" stopColor={on ? '#FFF8DC' : '#6d6468'} />
+              <stop offset=".7" stopColor={on ? '#FFD98A' : '#453e41'} />
+              <stop offset="1" stopColor={on ? '#F4B860' : '#2e292b'} />
             </radialGradient>
           </defs>
           {/* socket, centred under the cord */}
@@ -177,13 +177,23 @@ export function Bulb({ x, compact = false }: { x: number; compact?: boolean }) {
           <path
             d="M14 17h12l3 7a15 15 0 1 1-18 0z"
             fill={`url(#bulb-glass-${compact ? 'c' : 'd'})`}
-            stroke={on ? '#F4B860' : '#5C524B'}
+            stroke={on ? '#F4B860' : '#9a8f88'}
             strokeWidth="1.2"
           />
+          {/* A glint on the glass, so the unlit bulb still reads against a dark wallpaper. */}
+          {!on && (
+            <path
+              d="M13.5 30a8 8 0 0 1 4-6"
+              fill="none"
+              stroke="rgba(255,255,255,.55)"
+              strokeWidth="1.6"
+              strokeLinecap="round"
+            />
+          )}
           <path
             d="M17 25l3 10 3-10"
             fill="none"
-            stroke={on ? '#C9572A' : '#6E635B'}
+            stroke={on ? '#C9572A' : '#a39890'}
             strokeWidth="1.4"
             strokeLinecap="round"
             strokeLinejoin="round"

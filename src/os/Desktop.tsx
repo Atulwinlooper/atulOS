@@ -25,10 +25,23 @@ export function Desktop() {
   const showNow = h >= 780;
   const leftX = 28;
   const anchorX = leftX + 165;
-  const charSize = Math.max(240, Math.min(400, h * 0.46, (showRight ? w - 720 : w - 380) * 0.95));
-  const centerLeft = showRight ? w / 2 : 360 + (w - 360) / 2;
-  // The bulb hangs just outside Atul's clickable area, if there is room next to the ID card.
-  const bulbX = centerLeft - charSize / 2 - 34;
+  // Atul sits in the free space right of the ID card (or centred when the widgets column shows).
+  // The bulb hangs just left of his head. If that is too close to the ID card (portrait tablets),
+  // the bulb gets its own lane after the card and Atul shifts right and shrinks to make room.
+  const cardRight = anchorX + 135; // the card is ~270px wide, centred on its anchor
+  const LANE = 24; // clearance on each side of the lamp, since card and lamp both swing
+  const sizeFor = (from: number) =>
+    Math.max(240, Math.min(400, h * 0.46, (showRight ? w - 720 : w - from - 20) * 0.95));
+  let charSize = sizeFor(360);
+  let centerLeft = showRight ? w / 2 : 360 + (w - 360) / 2;
+  let bulbX = centerLeft - charSize / 2 - 34;
+  if (!showRight && bulbX - 20 < cardRight + LANE) {
+    bulbX = cardRight + LANE + 20;
+    const from = bulbX + 20 + LANE;
+    charSize = sizeFor(from);
+    centerLeft = from + (w - from) / 2;
+  }
+  const bulbFits = bulbX - 20 >= cardRight + 6 && bulbX + 20 <= centerLeft - charSize / 2 - 2;
 
   return (
     <div className="desktop">
@@ -38,7 +51,7 @@ export function Desktop() {
       <IdCard anchorX={anchorX} anchorY={30} length={78} />
 
       {/* A pendant light just left of Atul's head. Pull the cord. */}
-      {bulbX > anchorX + 170 && <Bulb x={bulbX} />}
+      {bulbFits && <Bulb x={bulbX} />}
 
       {showClock && (
         <div className="d-col left" style={{ left: leftX, top: 520 }}>
@@ -54,7 +67,10 @@ export function Desktop() {
           <h1>Hi, I'm {profile.first}.</h1>
           <p className="muted">{profile.tagline}</p>
           <span className="hint">
-            <i /> Move your cursor. He's watching.
+            <i />{' '}
+            {matchMedia('(pointer: coarse)').matches
+              ? 'Tap or drag near him. He’s watching.'
+              : 'Move your cursor. He’s watching.'}
           </span>
         </div>
       </div>

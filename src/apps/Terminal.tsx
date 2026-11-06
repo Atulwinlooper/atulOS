@@ -81,7 +81,9 @@ export function Terminal() {
 
   // Focus the prompt on open, but not on phones, where it would pop the keyboard over the sheet.
   useEffect(() => {
-    if (!isPhone) inputRef.current?.focus({ preventScroll: true });
+    // Not on touch screens: focusing would pop up the keyboard before anyone asked to type.
+    if (!isPhone && !matchMedia('(pointer: coarse)').matches)
+      inputRef.current?.focus({ preventScroll: true });
   }, [isPhone]);
   // Keep the newest output in view after every render.
   useEffect(() => {
@@ -93,7 +95,8 @@ export function Terminal() {
   const quitSnake = (score: number) => {
     setMode('shell');
     print(<span className="muted">Snake ended. Score {score}.</span>);
-    window.setTimeout(() => inputRef.current?.focus(), 0);
+    if (!matchMedia('(pointer: coarse)').matches)
+      window.setTimeout(() => inputRef.current?.focus(), 0);
   };
 
   const run = (raw: string) => {
