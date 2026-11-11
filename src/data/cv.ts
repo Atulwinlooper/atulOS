@@ -43,8 +43,8 @@ export type Project = {
   short: string;
   name: string;
   domain: string;
-  category: 'Enterprise' | 'Commerce' | 'Government' | 'Social';
-  tech: 'Flutter' | 'React Native' | 'Android (Java)';
+  category: 'Enterprise' | 'Commerce' | 'Government' | 'Social' | 'Side projects';
+  tech: 'Flutter' | 'React Native' | 'Android (Java)' | 'Web';
   color: string;
   ink: string;
   /** Who used it, at what scale. */
@@ -57,7 +57,7 @@ export type Project = {
   /** One factual line for the résumé (from the CV, no client names). */
   brief: string;
   stack: string[];
-  /** Public store listings, for apps that can be named. */
+  /** Store listings, the live site or the source code, for work that can be named. */
   links?: { label: string; url: string }[];
 };
 
@@ -254,6 +254,75 @@ export const projects: Project[] = [
         url: 'https://play.google.com/store/apps/details?id=com.edgewet.com',
       },
     ],
+  },
+  {
+    id: 'easipaper',
+    short: 'EP',
+    name: 'EasiPaper',
+    domain: 'Finance · Paperwork',
+    category: 'Side projects',
+    tech: 'Web',
+    color: '#E8C76A',
+    ink: '#2A2108',
+    scale: '39 free tools for salary, tax, rent and HR paperwork in India',
+    role: 'Founder: product, design and build',
+    platforms: 'Web, mobile-friendly',
+    summary:
+      'My own product: 39 free calculators and document makers for everyday Indian paperwork. Rent receipts for HRA, old vs new tax regime, in-hand salary, invoices with GST, payslips (even in bulk from a CSV), and offer, relieving and experience letters.',
+    challenges: [
+      {
+        title: 'Private by design',
+        text: 'Every tool runs in the browser. There is no account and no server that sees what you type; saved details stay on your own device.',
+      },
+      {
+        title: 'Four audiences, one site',
+        text: 'Tools grouped for tenants, salaried employees, freelancers and HR teams, so each person finds their paperwork in a couple of taps.',
+      },
+      {
+        title: 'Rules that change every year',
+        text: 'Tax calculators follow FY 2026-27 under the Income-tax Act, 2025, with the logic kept in one place so yearly changes are quick.',
+      },
+    ],
+    outcome: 'Live at easipaper.in: free, no sign-up, 39 tools and growing.',
+    brief:
+      'Built EasiPaper (easipaper.in), a free site of 39 browser-only calculators and document makers for Indian salary, tax, rent and HR paperwork.',
+    stack: ['Web', 'Client-side only', 'PDF generation', 'Local storage', 'SEO'],
+    links: [{ label: 'Visit easipaper.in', url: 'https://easipaper.in' }],
+  },
+  {
+    id: 'netseye',
+    short: 'NE',
+    name: 'NetSeye',
+    domain: 'Home security · Android TV',
+    category: 'Side projects',
+    tech: 'Flutter',
+    color: '#5FB89A',
+    ink: '#06221A',
+    scale: 'Open source (MIT) · Android phones and Android TV',
+    role: 'Sole developer',
+    platforms: 'Android, Android TV',
+    summary:
+      'A Flutter app to watch CP Plus and other ONVIF / RTSP home cameras on phones and TVs over home Wi-Fi only: no internet, no cloud account, no server. The cameras stay viewable even when the internet is down.',
+    challenges: [
+      {
+        title: 'Taming camera firmware',
+        text: 'A small native relay keeps streams alive on CP Plus firmware that needs RTCP receiver reports, and repairs the malformed stream descriptions older firmware sends.',
+      },
+      {
+        title: 'Built for the TV remote',
+        text: 'Full D-pad control, a 2 × 2 camera wall and an on-screen keyboard designed for the remote, with quality that falls back when a TV’s decoder can’t keep up.',
+      },
+      {
+        title: 'Smooth, small, secure',
+        text: 'Hardware decoding through Media3 / ExoPlayer into a Flutter texture, connections reused between screens, a 16 MB app, and camera passwords stored encrypted on the device.',
+      },
+    ],
+    outcome:
+      'Open source on GitHub, with unit, widget and golden tests, and APKs for phones and Android TV.',
+    brief:
+      'Built NetSeye (open source: github.com/Atulwinlooper/netseye), a Flutter app for watching ONVIF / RTSP cameras on Android phones and TV over local Wi-Fi, with a native Kotlin playback layer.',
+    stack: ['Flutter', 'Dart', 'Kotlin', 'Media3 / ExoPlayer', 'ONVIF', 'RTSP', 'Android TV'],
+    links: [{ label: 'Source on GitHub', url: 'https://github.com/Atulwinlooper/netseye' }],
   },
 ];
 

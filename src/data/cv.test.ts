@@ -44,10 +44,10 @@ describe('project write-ups', () => {
 });
 
 describe('named apps', () => {
-  it('link only to their Google Play listings', () => {
-    for (const p of projects)
-      for (const l of p.links ?? [])
-        expect(l.url).toMatch(/^https:\/\/play\.google\.com\/store\/apps\/details\?id=[\w.]+$/);
+  it('link only to their store listing, live site or source', () => {
+    const ok =
+      /^https:\/\/(play\.google\.com\/store\/apps\/details\?id=[\w.]+|github\.com\/Atulwinlooper\/[\w-]+|easipaper\.in)$/;
+    for (const p of projects) for (const l of p.links ?? []) expect(l.url).toMatch(ok);
   });
 });
 

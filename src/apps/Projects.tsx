@@ -3,7 +3,7 @@ import { projects, type Project } from '../data/cv';
 import { Icon } from '../os/icons';
 import { useOS } from '../os/store';
 
-const CATS = ['All', 'Enterprise', 'Commerce', 'Government', 'Social'] as const;
+const CATS = ['All', 'Enterprise', 'Commerce', 'Government', 'Social', 'Side projects'] as const;
 
 export function Projects() {
   const { open } = useOS();
@@ -53,6 +53,10 @@ export function Projects() {
         <span className="side-item static">
           <i className="dot" style={{ background: '#8FD9A8' }} />
           Android (Java)
+        </span>
+        <span className="side-item static">
+          <i className="dot" style={{ background: '#E8C76A' }} />
+          Web
         </span>
       </nav>
 
@@ -158,7 +162,7 @@ export function Projects() {
               href={l.url}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={`${l.label} on Google Play (opens in a new tab)`}
+              aria-label={`${l.label === 'Google Play' ? 'Get it on Google Play' : l.label} (opens in a new tab)`}
             >
               {l.label === 'Google Play' ? 'Get it on Google Play' : l.label}{' '}
               <Icon.external size={13} />
